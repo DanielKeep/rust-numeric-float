@@ -14,6 +14,10 @@ mod util;
 
 const NAN_MSG: &'static str = "operation resulted in NaN";
 
+pub trait Numeric {
+    type Float;
+}
+
 custom_derive! {
     #[allow(non_camel_case_types)]
     #[derive(Copy, Clone, Default, PartialEq, PartialOrd, NumericImpl(option))]

@@ -166,6 +166,13 @@ macro_rules! NumericImpl {
         }
 
         /*
+        Local crate impls.
+        */
+        impl ::Numeric for $name {
+            type Float = $fty;
+        }
+
+        /*
         std impls.
         */
         impl Eq for $name {}
