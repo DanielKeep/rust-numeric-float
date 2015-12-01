@@ -12,3 +12,7 @@ custom_derive = "0.1.2"
 newtype_derive = "0.1.2"
 num = { version = "0.1.27", optional = true }
 unreachable = "0.0.2"
+
+[dev-dependencies]
+ieee754 = "0.2.1"
+itertools = "0.4.3"
