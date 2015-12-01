@@ -406,7 +406,23 @@ macro_rules! num_impl_num {
             $kind;
             option {}
             panic {
-                // TODO
+                impl num::traits::Signed for $name {
+                    fn abs(&self) -> $name {
+                        $name::abs(*self)
+                    }
+                    fn abs_sub(&self, other: &$name) -> $name {
+                        $name::abs_sub(*self, *other)
+                    }
+                    fn signum(&self) -> $name {
+                        $name::signum(*self)
+                    }
+                    fn is_positive(&self) -> bool {
+                        $name::is_sign_positive(*self)
+                    }
+                    fn is_negative(&self) -> bool {
+                        $name::is_sign_negative(*self)
+                    }
+                }
             }
         }
 
