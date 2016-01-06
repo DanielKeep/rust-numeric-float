@@ -3,6 +3,16 @@ name = "numeric-float"
 version = "0.1.0"
 authors = ["Daniel Keep <daniel.keep@gmail.com>"]
 
+description = "This crate defines variants of the f32 and f64 types which exclude Not-a-Number.  These types are collectively called "numeric".  As a consequence of never being NaN, these types implement Eq, Ord, and Hash."
+repository = "https://github.com/DanielKeep/rust-numeric-float"
+documentation = "https://danielkeep.github.io/rust-numeric-float/doc/numeric_float/index.html"
+license = "MIT"
+keywords = ["float", "nan", "ord"]
+
+exclude = [
+    "update-docs.py",
+]
+
 [features]
 default = []
 deref = []

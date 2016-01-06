@@ -8,3 +8,5 @@ They also attempt to define all relevant operations one would expect to be able 
 The `n*f` types handle operations that result in `NaN` by instead returning the underlying `f*` result directly.  For example, adding two `n32f`s results in an `f32`.
 
 The `n*p` types handle operations that result in `NaN` by *panicking* when `NaN` is produced.  Some operations which panic also have `try_*` alternatives that return `Option<Self>` instead.
+
+([Documentation for the master branch](https://danielkeep.github.io/rust-numeric-float/doc/numeric_float/index.html).)
