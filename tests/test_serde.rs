@@ -1,13 +1,15 @@
-#![cfg(feature="rustc-serialize")]
+#![cfg(feature="serde")]
 
 extern crate numeric_float;
-extern crate rustc_serialize;
+extern crate serde;
+extern crate serde_json;
 
 #[macro_use] mod util;
 
 use std::error::Error;
 use numeric_float::n32f;
-use rustc_serialize::{json, Decodable, Encodable};
+use serde::{Deserialize, Serialize};
+use serde_json as json;
 use util::corner_cases as ccs;
 
 #[test]
@@ -39,14 +41,14 @@ fn test_rustc_serialize_roundtrip() {
     {
         let case = std::f32::NAN;
         println!("- {:?}", case);
-        let encoded = json::encode(&case).unwrap();
-        let decoded: Result<n32f, _> = json::decode(&encoded);
+        let encoded = json::to_string(&case).unwrap();
+        let decoded: Result<n32f, _> = json::from_str(&encoded);
         assert!(decoded.is_err());
     }
 }
 
-fn round_trip<T: Decodable + Encodable>(v: &T) -> Result<T, Box<Error>> {
-    let encoded = json::encode(v).expect("couldn't encode");
+fn round_trip<T: Deserialize + Serialize>(v: &T) -> Result<T, Box<Error>> {
+    let encoded = json::to_string(v).expect("couldn't encode");
     println!("  - encoded: {:?}", encoded);
-    Ok(try!(json::decode(&encoded)))
+    Ok(try!(json::from_str(&encoded)))
 }
