@@ -86,7 +86,6 @@ custom_derive! {
 }
 
 custom_derive! {
-
     /**
     A 64-bit floating point type which excludes Not-a-Number.
 
