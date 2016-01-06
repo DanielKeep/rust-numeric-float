@@ -2,9 +2,15 @@ use std::error::Error;
 use std::fmt;
 use std::num::ParseFloatError;
 
+/**
+An error which can be returned when parsing a numeric float (*e.g.* `n32f`, `n64p`).
+*/
 #[derive(Clone, Debug, PartialEq)]
 pub enum ParseNumericError {
+    /// Parsing resulted in "Not-a-Number".
     NotANumber,
+
+    /// Parsing failed for some other reason.
     FloatError(ParseFloatError),
 }
 
