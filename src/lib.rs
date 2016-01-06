@@ -20,24 +20,28 @@ pub trait Numeric {
 
 custom_derive! {
     #[allow(non_camel_case_types)]
-    #[derive(Copy, Clone, Default, PartialEq, PartialOrd, NumericImpl(option))]
+    #[derive(Copy, Clone, Default, PartialEq, PartialOrd,
+        NumericImpl(option), RewrapFrom(n32p))]
     pub struct n32f(f32);
 }
 
 custom_derive! {
     #[allow(non_camel_case_types)]
-    #[derive(Copy, Clone, Default, PartialEq, PartialOrd, NumericImpl(option))]
+    #[derive(Copy, Clone, Default, PartialEq, PartialOrd,
+        NumericImpl(option), RewrapFrom(n64p))]
     pub struct n64f(f64);
 }
 
 custom_derive! {
     #[allow(non_camel_case_types)]
-    #[derive(Copy, Clone, Default, PartialEq, PartialOrd, NumericImpl(panic))]
+    #[derive(Copy, Clone, Default, PartialEq, PartialOrd,
+        NumericImpl(panic), RewrapFrom(n32f))]
     pub struct n32p(f32);
 }
 
 custom_derive! {
     #[allow(non_camel_case_types)]
-    #[derive(Copy, Clone, Default, PartialEq, PartialOrd, NumericImpl(panic))]
+    #[derive(Copy, Clone, Default, PartialEq, PartialOrd,
+        NumericImpl(panic), RewrapFrom(n64f))]
     pub struct n64p(f64);
 }

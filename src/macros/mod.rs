@@ -16,6 +16,20 @@ macro_rules! NewtypeFmt {
     };
 }
 
+macro_rules! RewrapFrom {
+    (
+        ($src:ty)
+        $(pub)* struct $name:ident($fty:ty);
+    ) => {
+        impl ::std::convert::From<$src> for $name {
+            #[inline]
+            fn from(v: $src) -> Self {
+                $name(v.into())
+            }
+        }
+    };
+}
+
 macro_rules! WrapOp {
     (
         ($opt:ident, $opf:ident, $ops:tt, option)
