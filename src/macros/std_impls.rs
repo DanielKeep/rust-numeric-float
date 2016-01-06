@@ -1,59 +1,6 @@
 macro_rules! NumericImpl {
     (($kind:tt) pub struct $name:ident($fty:ty);) => {
         /*
-        Forward on to other derivation macros.
-        */
-        expand_multiple! {
-            {pub struct $name($fty);}
-
-            WrapOp(Add, add, +, $kind),
-            WrapOp(Sub, sub, -, $kind),
-            WrapOp(Mul, mul, *, $kind),
-            WrapOp(Div, div, /, $kind),
-            WrapOp(Rem, rem, %, $kind),
-            NewtypeNeg(), NewtypeNeg(&self),
-            NewtypeFmt(Debug), NewtypeFmt(Display),
-            NewtypeFmt(LowerExp), NewtypeFmt(UpperExp),
-
-            WrapMethod(is_infinite(self) -> bool),
-            WrapMethod(is_finite(self) -> bool),
-            WrapMethod(is_normal(self) -> bool),
-            WrapMethod(classify(self) -> ::std::num::FpCategory),
-            WrapMethod(floor(self)),
-            WrapMethod(ceil(self)),
-            WrapMethod(round(self)),
-            WrapMethod(trunc(self)),
-            WrapMethod(fract/try_fract(self) -> $kind),
-            WrapMethod(abs(self)),
-            WrapMethod(signum(self)),
-            WrapMethod(is_sign_positive(self) -> bool),
-            WrapMethod(is_sign_negative(self) -> bool),
-            WrapMethod(recip(self)),
-            WrapMethod(powi(self, n: i32)),
-            WrapMethod(sqrt/try_sqrt(self) -> $kind),
-            WrapMethod(exp(self)),
-            WrapMethod(exp2(self)),
-            WrapMethod(ln/try_ln(self) -> $kind),
-            WrapMethod(log2/try_log2(self) -> $kind),
-            WrapMethod(log10/try_log10(self) -> $kind),
-            WrapMethod(cbrt(self)),
-            WrapMethod(sin/try_sin(self) -> $kind),
-            WrapMethod(cos/try_cos(self) -> $kind),
-            WrapMethod(tan/try_tan(self) -> $kind),
-            WrapMethod(asin/try_asin(self) -> $kind),
-            WrapMethod(acos/try_acos(self) -> $kind),
-            WrapMethod(atan/try_atan(self) -> $kind),
-            WrapMethod(exp_m1(self)),
-            WrapMethod(ln_1p/try_ln_1p(self) -> $kind),
-            WrapMethod(sinh/try_sinh(self) -> $kind),
-            WrapMethod(cosh/try_cosh(self) -> $kind),
-            WrapMethod(tanh/try_tanh(self) -> $kind),
-            WrapMethod(asinh(self)),
-            WrapMethod(acosh/try_acosh(self) -> $kind),
-            WrapMethod(atanh/try_atanh(self) -> $kind),
-        }
-
-        /*
         Inherent impl.
         */
         impl $name {
@@ -105,6 +52,59 @@ macro_rules! NumericImpl {
             pub fn atan2(self, other: $name) -> $name {
                 $name((self.0).atan2(other.0))
             }
+        }
+
+        /*
+        Forward on to other derivation macros.
+        */
+        expand_multiple! {
+            {pub struct $name($fty);}
+
+            WrapOp(Add, add, +, $kind),
+            WrapOp(Sub, sub, -, $kind),
+            WrapOp(Mul, mul, *, $kind),
+            WrapOp(Div, div, /, $kind),
+            WrapOp(Rem, rem, %, $kind),
+            NewtypeNeg(), NewtypeNeg(&self),
+            NewtypeFmt(Debug), NewtypeFmt(Display),
+            NewtypeFmt(LowerExp), NewtypeFmt(UpperExp),
+
+            WrapMethod(is_infinite(self) -> bool),
+            WrapMethod(is_finite(self) -> bool),
+            WrapMethod(is_normal(self) -> bool),
+            WrapMethod(classify(self) -> ::std::num::FpCategory),
+            WrapMethod(floor(self)),
+            WrapMethod(ceil(self)),
+            WrapMethod(round(self)),
+            WrapMethod(trunc(self)),
+            WrapMethod(fract/try_fract(self) -> $kind),
+            WrapMethod(abs(self)),
+            WrapMethod(signum(self)),
+            WrapMethod(is_sign_positive(self) -> bool),
+            WrapMethod(is_sign_negative(self) -> bool),
+            WrapMethod(recip(self)),
+            WrapMethod(powi(self, n: i32)),
+            WrapMethod(sqrt/try_sqrt(self) -> $kind),
+            WrapMethod(exp(self)),
+            WrapMethod(exp2(self)),
+            WrapMethod(ln/try_ln(self) -> $kind),
+            WrapMethod(log2/try_log2(self) -> $kind),
+            WrapMethod(log10/try_log10(self) -> $kind),
+            WrapMethod(cbrt(self)),
+            WrapMethod(sin/try_sin(self) -> $kind),
+            WrapMethod(cos/try_cos(self) -> $kind),
+            WrapMethod(tan/try_tan(self) -> $kind),
+            WrapMethod(asin/try_asin(self) -> $kind),
+            WrapMethod(acos/try_acos(self) -> $kind),
+            WrapMethod(atan/try_atan(self) -> $kind),
+            WrapMethod(exp_m1(self)),
+            WrapMethod(ln_1p/try_ln_1p(self) -> $kind),
+            WrapMethod(sinh/try_sinh(self) -> $kind),
+            WrapMethod(cosh/try_cosh(self) -> $kind),
+            WrapMethod(tanh/try_tanh(self) -> $kind),
+            WrapMethod(asinh(self)),
+            WrapMethod(acosh/try_acosh(self) -> $kind),
+            WrapMethod(atanh/try_atanh(self) -> $kind),
         }
 
         nan_branch! {
