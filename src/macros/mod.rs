@@ -1,6 +1,7 @@
 #[macro_use] mod std_impls;
 #[macro_use] mod conv_impls;
 #[macro_use] mod num_impls;
+#[macro_use] mod rustc_serialize_impls;
 
 macro_rules! as_items {
     ($($is:item)*) => {$($is)*};

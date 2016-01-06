@@ -223,5 +223,6 @@ macro_rules! NumericImpl {
 
         num_impl_conv!{ ($kind) pub struct $name($fty); }
         num_impl_num!{ ($kind) pub struct $name($fty); }
+        num_impl_rustc_serialize!{ ($kind) pub struct $name($fty); }
     };
 }

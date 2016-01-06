@@ -13,6 +13,7 @@ Where possible, the types in this crate implement all traits which are implement
 
 * [`conv`](https://crates.io/crates/conv/)
 * [`num`](https://crates.io/crates/num/)
+* [`rustc-serialize`](https://crates.io/crates/rustc-serialize/)
 
 The following are explicitly *not* supported:
 
@@ -28,6 +29,7 @@ extern crate unreachable;
 
 #[cfg(feature="conv")] extern crate conv;
 #[cfg(feature="num")] extern crate num;
+#[cfg(feature="rustc-serialize")] extern crate rustc_serialize;
 
 pub use err::ParseNumericError;
 

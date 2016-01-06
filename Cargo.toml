@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Daniel Keep <daniel.keep@gmail.com>"]
 
 [features]
-default = ["conv", "num"]
+default = ["conv", "num", "rustc-serialize"]
 deref = []
 
 [dependencies]
@@ -12,6 +12,7 @@ conv = { version = "0.3.0", optional = true }
 custom_derive = "0.1.2"
 newtype_derive = "0.1.2"
 num = { version = "0.1.27", optional = true }
+rustc-serialize = { version = "0.3.16", optional = true }
 unreachable = "0.0.2"
 
 [dev-dependencies]
