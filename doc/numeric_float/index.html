@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `numeric_float` crate.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, numeric_float">
+
+    <title>numeric_float - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'></p><script>window.sidebarCurrent = {name: 'numeric_float', ty: 'mod', relpath: '../'};</script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>numeric_float</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-0' class='srclink' href='../src/numeric_float/lib.rs.html#1-99' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>This crate defines variants of the <code>f32</code> and <code>f64</code> types which <em>exclude</em> Not-a-Number.  These types are collectively called &quot;numeric&quot;.  As a consequence of never being <code>NaN</code>, these types implement <code>Eq</code>, <code>Ord</code>, and <code>Hash</code>.</p>
+
+<p>They also attempt to define all relevant operations one would expect to be able to perform on floating-point numbers.  The <em>problem</em> is what to do about operations that might result in <code>NaN</code>.</p>
+
+<p>The <code>n*f</code> types handle operations that result in <code>NaN</code> by instead returning the underlying <code>f*</code> result directly.  For example, adding two <code>n32f</code>s results in an <code>f32</code>.</p>
+
+<p>The <code>n*p</code> types handle operations that result in <code>NaN</code> by <em>panicking</em> when <code>NaN</code> is produced.  Some operations which panic also have <code>try_*</code> alternatives that return <code>Option&lt;Self&gt;</code> instead.</p>
+
+<h1 id='supported-traits' class='section-header'><a href='#supported-traits'>Supported Traits</a></h1>
+<p>Where possible, the types in this crate implement all traits which are implemented on the corresponding <code>f*</code> type.  In addition to those in the standard library, the following crates are also optionally supported:</p>
+
+<ul>
+<li><a href="https://crates.io/crates/conv/"><code>conv</code></a></li>
+<li><a href="https://crates.io/crates/num/"><code>num</code></a></li>
+<li><a href="https://crates.io/crates/rustc-serialize/"><code>rustc-serialize</code></a></li>
+<li><a href="https://crates.io/crates/serde/"><code>serde</code></a></li>
+</ul>
+
+<p>The following are explicitly <em>not</em> supported:</p>
+
+<ul>
+<li><code>DecodableFloat</code>, and <code>RawFloat</code> are internal and not stable to implement.</li>
+<li><code>One</code>, <code>Zero</code>, and <code>*Assign</code> are unstable.</li>
+<li><a href="https://crates.io/crates/ieee754/"><code>ieee754</code></a>: the <code>Ieee754</code> trait <em>cannot</em> be implemented for new types.</li>
+<li><code>num</code>: <code>Float</code>, <code>Num</code>, <code>One</code>, <code>Signed</code>, and <code>Zero</code> <em>cannot</em> be implemented for <code>n*f</code>.</li>
+</ul>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.n32f.html'
+                               title='numeric_float::n32f'>n32f</a></td>
+                        <td class='docblock short'>
+                             <p>A 32-bit floating point type which excludes Not-a-Number.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.n32p.html'
+                               title='numeric_float::n32p'>n32p</a></td>
+                        <td class='docblock short'>
+                             <p>A 32-bit floating point type which excludes Not-a-Number.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.n64f.html'
+                               title='numeric_float::n64f'>n64f</a></td>
+                        <td class='docblock short'>
+                             <p>A 64-bit floating point type which excludes Not-a-Number.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.n64p.html'
+                               title='numeric_float::n64p'>n64p</a></td>
+                        <td class='docblock short'>
+                             <p>A 64-bit floating point type which excludes Not-a-Number.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.ParseNumericError.html'
+                               title='numeric_float::ParseNumericError'>ParseNumericError</a></td>
+                        <td class='docblock short'>
+                             <p>An error which can be returned when parsing a numeric float (<em>e.g.</em> <code>n32f</code>, <code>n64p</code>).</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.Numeric.html'
+                               title='numeric_float::Numeric'>Numeric</a></td>
+                        <td class='docblock short'>
+                             <p>This trait is implemented for all numeric float types in this crate.</p>
+
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "numeric_float";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
