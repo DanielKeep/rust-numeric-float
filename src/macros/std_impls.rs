@@ -175,6 +175,15 @@ macro_rules! NumericImpl {
         /*
         std impls.
         */
+        #[cfg(feature = "deref")]
+        impl ::std::ops::Deref for $name {
+            type Target = $fty;
+
+            fn deref(&self) -> &$fty {
+                &self.0
+            }
+        }
+
         impl Eq for $name {}
 
         impl Into<$fty> for $name {
