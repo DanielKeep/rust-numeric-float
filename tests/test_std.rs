@@ -1,11 +1,9 @@
-#![feature(catch_panic)]
-
 extern crate itertools;
 extern crate numeric_float;
 
 #[macro_use] mod util;
 
-use std::thread::catch_panic;
+use std::thread::spawn;
 use itertools::Itertools;
 use numeric_float::{Numeric, n32f, n64f, n32p, n64p};
 use util::corner_cases as ccs;
@@ -42,7 +40,7 @@ fn test_arith() {
                     let cf = as_expr!(af $op bf);
                     let an = <$ty>::from_float(af).unwrap();
                     let bn = <$ty>::from_float(bf).unwrap();
-                    let cn = catch_panic(move || as_expr!(an $op bn)).ok();
+                    let cn = spawn(move || as_expr!(an $op bn)).join().ok();
                     match cn {
                         Some(cn) => {
                             let cnf = cn.into_float();
